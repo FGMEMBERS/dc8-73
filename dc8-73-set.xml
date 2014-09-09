@@ -1,0 +1,169 @@
+<PropertyList>
+ <sim>
+  <description>Douglas DC-8-73</description>
+  <author>Bob Faulkner, Thomas Haigh, Isaias V. Prestes</author>
+  <status>Beta</status>
+  <aircraft-version>0.1</aircraft-version>
+  <flight-model>jsb</flight-model>
+  <aero>dc8-73</aero>
+  <startup>
+   <splash-texture>Aircraft/dc8-73/splash.png</splash-texture>
+  </startup>
+
+  <model>
+   <path>Aircraft/dc8-73/Models/dc8-73.xml</path>
+   <livery>
+    <file type="string">ATI</file>
+   </livery>
+  </model>
+
+  <view n="0">
+   <name>Cockpit View</name>
+   <type>lookfrom</type>
+   <internal type="bool">true</internal>
+   <config>
+    <x-offset-m type="double">-0.5</x-offset-m>
+    <y-offset-m type="double">-1.66</y-offset-m>
+    <z-offset-m type="double">-25.33</z-offset-m>
+    <limits>
+     <enabled type="bool">true</enabled>
+     <left>
+      <heading-max-deg type="double">140</heading-max-deg>
+      <x-offset-max-m type="double">0.70</x-offset-max-m>
+      <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+     </left>
+     <right>
+      <heading-max-deg type="double">160</heading-max-deg>
+      <x-offset-max-m type="double">0.25</x-offset-max-m>
+      <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+     </right>
+    </limits>
+   </config>
+  </view>
+
+
+  <view n="1">
+   <config>
+    <!-- extend chase view offset -->
+    <z-offset-m type="double">-60.0</z-offset-m>
+   </config>
+  </view>
+  <chase-distance-m>-55</chase-distance-m>
+
+  <flaps>
+   <setting>0.000</setting>
+   <setting>0.250</setting> 
+   <setting>0.375</setting> 
+   <setting>0.500</setting> 
+   <setting>0.750</setting> 
+   <setting>1.000</setting> 
+  </flaps>
+
+  <sound>
+   <path>Aircraft/dc8-73/Sounds/dc8-73-sound.xml</path>
+   <switch type = "bool">0</switch>
+   <stall-horn type="bool">0</stall-horn>
+  </sound>
+
+  <instrumentation>
+   <path>Aircraft/dc8-73/Instruments/instrumentation.xml</path>
+  </instrumentation>
+
+  <systems>
+   <path>Aircraft/dc8-73/Systems/systems.xml</path>
+   			<electrical>
+				<path>Aircraft/dc8-73/Systems/generic-electrical.xml</path>
+			</electrical>
+  </systems>
+
+
+<weight n="0">
+ <name>Crew</name>
+ <weight-lb>350</weight-lb>
+ <max-lb>500</max-lb>
+ <min-lb>350</min-lb>
+</weight>
+
+<weight n="1">
+ <name>Cargo</name>
+ <weight-lb>50000</weight-lb>
+ <max-lb>59000</max-lb>
+ <min-lb>0</min-lb>
+</weight>
+
+
+  <menubar>
+   <default>
+    <menu n="100">
+     <label>DC-8-73</label>
+     <enabled type="bool">true</enabled>
+     <item>
+      <label>Autostart</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/start-idling</property>
+       <command>property-toggle</command>
+       <property>controls/engines/engine[0]/starter</property>
+      </binding>
+     </item>
+     <item>
+      <label>Select Livery</label>
+      <binding>
+       <command>nasal</command>
+       <script>aircraft.livery.dialog.open()</script>
+      </binding>
+     </item>
+    </menu>
+   </default>
+  </menubar>
+ </sim>
+<engines>
+ <engine n="0">
+  <reverser-position type="double">0.000000</reverser-position>
+  <running>true</running>
+ </engine>     
+ <engine n="1">
+  <reverser-position type="double">0.000000</reverser-position>
+  <running>true</running>
+ </engine>    
+ <engine n="2">
+  <reverser-position type="double">0.000000</reverser-position>
+  <running>true</running>
+ </engine>    
+ <engine n="3">
+  <reverser-position type="double">0.000000</reverser-position>
+  <running>true</running>
+ </engine>    
+</engines>
+
+
+
+
+<input>
+ <keyboard>
+  <key n="127">
+   <name>Delete</name>
+   <desc>Toggle Reversers</desc>
+   <binding>
+    <command>nasal</command>
+    <script>reversethrust.togglereverser()</script>
+   </binding>
+  </key>
+ </keyboard>
+</input>
+<nasal>
+ <reversethrust>
+  <file>Aircraft/dc8-73/Nasal/reverse-thrust.nas</file>
+ </reversethrust>
+    <systems>
+      <file>Aircraft/dc8-73/Models/Instruments/KLN90B/kln90b.nas</file>
+    </systems>
+    
+</nasal>
+
+
+
+
+
+</PropertyList>
+
